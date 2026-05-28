@@ -134,6 +134,7 @@ class JobMatch:
     url: str
     region: str  # india | texas | california
     ats: str
+    description: str = ""
 
 
 def _normalize(text: str) -> str:
@@ -168,9 +169,12 @@ def detect_region(location: str) -> str | None:
 
 
 def is_match(company: str, category: str, title: str, location: str, url: str, ats: str) -> JobMatch | None:
-    if not matches_pm_senior(title):
+    from pm_jobs_scraper.search_criteria import get_search_criteria
+
+    criteria = get_search_criteria()
+    if not criteria.title_matches(title):
         return None
-    region = detect_region(f"{location} {title}")
+    region = criteria.region_matches(location, title)
     if not region:
         return None
     return JobMatch(
@@ -181,4 +185,5 @@ def is_match(company: str, category: str, title: str, location: str, url: str, a
         url=url,
         region=region,
         ats=ats,
+        description="",
     )
