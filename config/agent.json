@@ -1,0 +1,18 @@
+{
+  "candidateName": "Balaji Chandran",
+  "candidateTitle": "VP / Head of Product",
+  "candidateLocation": "Bangalore, India",
+  "regions": [
+    "india",
+    "texas",
+    "california"
+  ],
+  "jobTitles": [
+    "Head of Product",
+    "Director Product management"
+  ],
+  "requireSeniorPmRules": true,
+  "fetchDescriptions": false,
+  "useLlmMatch": null,
+  "apiBaseUrl": "http://127.0.0.1:8765"
+}
