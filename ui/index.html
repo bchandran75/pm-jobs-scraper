@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PM Leadership Job Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --blue: #1a6ef7; --border: #e5e7eb; --muted: #6b7280; --text: #111827; }
+    * { box-sizing: border-box; }
+    body { font-family: "DM Sans", system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px 16px; color: var(--text); background: #fafafa; }
+    h1 { font-size: 1.25rem; margin: 0; }
+    .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .banner { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 10px; padding: 12px; margin-bottom: 16px; font-size: 13px; display: none; }
+    .banner.err { background: #fef2f2; border-color: #fca5a5; }
+    .tabs { display: flex; gap: 4px; background: #f3f4f6; border-radius: 10px; padding: 4px; margin: 20px 0; }
+    .tabs button { flex: 1; padding: 8px; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; background: transparent; color: var(--muted); }
+    .tabs button.active { background: #fff; color: var(--text); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    label { font-size: 12px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 5px; }
+    input, select, textarea { width: 100%; font-size: 13px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; }
+    textarea { font-family: ui-monospace, monospace; font-size: 11px; line-height: 1.5; resize: vertical; }
+    .btn { width: 100%; padding: 12px; font-size: 14px; font-weight: 600; background: var(--blue); color: #fff; border: none; border-radius: 10px; cursor: pointer; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .btn-sm { width: auto; padding: 6px 12px; font-size: 12px; margin-bottom: 12px; }
+    .info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 12px; margin-bottom: 16px; font-size: 13px; color: #1e40af; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+    .stat { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+    .stat b { font-size: 1.5rem; display: block; }
+    .stat span { font-size: 12px; color: var(--muted); }
+    .card { background: #fff; border: 1px solid var(--border); border-left: 4px solid #d1d5db; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+    .card.strong { border-left-color: #16a34a; }
+    .card.good { border-left-color: var(--blue); }
+    .card-head { display: flex; justify-content: space-between; gap: 12px; }
+    .badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+    .badge.strong { background: #dcfce7; color: #166534; }
+    .badge.good { background: #dbeafe; color: #1e40af; }
+    .badge.low { background: #f3f4f6; color: var(--muted); }
+    .meta { font-size: 12px; color: var(--muted); margin: 8px 0; }
+    .step { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; font-size: 13px; }
+    .step.active { background: #eff6ff; color: #1e40af; }
+    .step.done { background: #f0fdf4; color: #166534; }
+    .hidden { display: none !important; }
+    a.job-link { font-size: 12px; color: #374151; }
+  </style>
+</head>
+<body>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+    <div style="width:40px;height:40px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">🤖</div>
+    <div>
+      <h1>PM Leadership Job Agent</h1>
+      <p class="sub" id="subtitle">Live ATS scrape · RAG resume match</p>
+    </div>
+  </div>
+
+  <div id="banner" class="banner"></div>
+
+  <div class="tabs">
+    <button type="button" class="active" data-tab="setup">⚙️ Setup</button>
+    <button type="button" data-tab="results">📋 Results <span id="countBadge"></span></button>
+  </div>
+
+  <section id="panel-setup">
+    <div class="info">Open this page at <strong>http://127.0.0.1:8765/</strong> while <code>python3 server.py</code> is running.</div>
+    <label>Candidate name</label>
+    <input id="candidateName" value="Balaji Chandran" />
+    <label>Resume (RAG)</label>
+    <textarea id="resume" rows="8"></textarea>
+    <button type="button" class="btn btn-sm" id="saveResume">Save resume</button>
+    <label>Job titles to match <span style="font-weight:400;color:var(--muted)">(one per line or comma-separated)</span></label>
+    <textarea id="jobTitles" rows="4" placeholder="VP of Product&#10;Head of Product&#10;CPO"></textarea>
+    <label>Regions</label>
+    <input id="regions" value="india, texas, california" />
+    <label style="display:flex;align-items:center;gap:8px;font-weight:400;margin-bottom:12px;cursor:pointer">
+      <input type="checkbox" id="requireSeniorPm" checked /> Also apply VP/Director+ PM rules
+    </label>
+    <label>Companies (companies.json)</label>
+    <textarea id="companies" rows="5"></textarea>
+    <button type="button" class="btn btn-sm" id="saveCompanies">Save companies</button>
+    <p class="sub" style="margin:-8px 0 12px">First run scans ~100 boards — usually 30–90s. Use <strong>AI only</strong> for a faster pass.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <label>Category</label>
+        <select id="category">
+          <option value="all">All</option>
+          <option value="ai">AI only</option>
+          <option value="tech">Tech only</option>
+        </select>
+      </div>
+      <div style="display:flex;align-items:end;padding-bottom:12px">
+        <label style="display:flex;align-items:center;gap:8px;font-weight:400;cursor:pointer">
+          <input type="checkbox" id="useLlm" /> LLM refine
+        </label>
+      </div>
+    </div>
+    <button type="button" class="btn" id="runBtn">🤖 Scrape &amp; RAG-match</button>
+  </section>
+
+  <section id="panel-results" class="hidden">
+    <div id="steps"></div>
+    <div id="errorBox" class="banner err hidden"></div>
+    <div id="stats" class="stats hidden"></div>
+    <div id="filters" class="hidden" style="margin-bottom:12px;display:flex;gap:8px">
+      <select id="filterMatch"><option value="all">All</option><option value="strong">Strong 80%+</option><option value="good">Good 60–79%</option><option value="low">Low</option></select>
+      <select id="filterRegion"><option value="all">All regions</option><option value="india">India</option><option value="texas">Texas</option><option value="california">California</option></select>
+    </div>
+    <div id="jobs"></div>
+    <p id="empty" class="sub" style="text-align:center;padding:2rem">Run from Setup.</p>
+  </section>
+
+  <script>
+    const API = ""; // same origin
+    let allJobs = [];
+
+    async function api(path, opts = {}) {
+      const r = await fetch(API + path, { ...opts, headers: { "Content-Type": "application/json", ...(opts.headers || {}) } });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(data.error || "HTTP " + r.status);
+      return data;
+    }
+
+    function showBanner(msg, isErr) {
+      const b = document.getElementById("banner");
+      b.textContent = msg;
+      b.className = "banner" + (isErr ? " err" : "");
+      b.style.display = "block";
+    }
+
+    function tier(score) {
+      if (score >= 80) return "strong";
+      if (score >= 60) return "good";
+      return "low";
+    }
+
+    function renderJobs() {
+      const fm = document.getElementById("filterMatch").value;
+      const fr = document.getElementById("filterRegion").value;
+      const list = allJobs.filter(j => {
+        const s = j.matchScore || 0;
+        if (fm === "strong" && s < 80) return false;
+        if (fm === "good" && (s < 60 || s >= 80)) return false;
+        if (fm === "low" && s >= 60) return false;
+        if (fr !== "all" && j.region !== fr) return false;
+        return true;
+      }).sort((a, b) => (b.matchScore || 0) - (a.matchScore || 0));
+
+      const el = document.getElementById("jobs");
+      el.innerHTML = list.map(j => {
+        const t = j.matchTier || tier(j.matchScore || 0);
+        const label = t === "strong" ? "🟢 Strong" : t === "good" ? "🔵 Good" : "⚪ Low";
+        return `<article class="card ${t}">
+          <div class="card-head">
+            <div><strong>${esc(j.title)}</strong><div class="meta">${esc(j.company)}</div></div>
+            <span class="badge ${t}">${label} · ${j.matchScore || 0}%</span>
+          </div>
+          <div class="meta">📍 ${esc(j.location || "")} · ${esc(j.region || "")}</div>
+          <p style="font-size:13px;line-height:1.6">${esc(j.summary || "")}</p>
+          ${j.url ? `<a class="job-link" href="${esc(j.url)}" target="_blank" rel="noreferrer">🔗 View posting</a>` : ""}
+        </article>`;
+      }).join("");
+      document.getElementById("empty").classList.toggle("hidden", list.length > 0);
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+    }
+
+    async function init() {
+      try {
+        await api("/api/health");
+        const cfg = await api("/api/config");
+        if (cfg.candidateName) document.getElementById("candidateName").value = cfg.candidateName;
+        if (cfg.jobTitles) document.getElementById("jobTitles").value = Array.isArray(cfg.jobTitles) ? cfg.jobTitles.join("\n") : cfg.jobTitles;
+        if (cfg.regions) document.getElementById("regions").value = Array.isArray(cfg.regions) ? cfg.regions.join(", ") : cfg.regions;
+        if (cfg.requireSeniorPmRules !== undefined) document.getElementById("requireSeniorPm").checked = cfg.requireSeniorPmRules;
+        document.getElementById("subtitle").textContent = "API connected · " + (cfg.candidateName || "Ready");
+        const r = await api("/api/resume");
+        document.getElementById("resume").value = r.resume || "";
+        const c = await api("/api/companies");
+        document.getElementById("companies").value = JSON.stringify(c.companies, null, 2);
+      } catch (e) {
+        const isFile = location.protocol === "file:";
+        showBanner(
+          isFile
+            ? "Open http://127.0.0.1:8765/ in your browser (not the HTML file directly). Start server: python3 server.py"
+            : "Cannot reach API. Run: cd ~/projects/pm-jobs-scraper && python3 server.py",
+          true
+        );
+        document.getElementById("runBtn").disabled = true;
+      }
+    }
+
+    document.querySelectorAll(".tabs button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const t = btn.dataset.tab;
+        document.getElementById("panel-setup").classList.toggle("hidden", t !== "setup");
+        document.getElementById("panel-results").classList.toggle("hidden", t !== "results");
+      });
+    });
+
+    document.getElementById("saveResume").onclick = async () => {
+      await api("/api/resume", { method: "PUT", body: JSON.stringify({ resume: document.getElementById("resume").value }) });
+      showBanner("Resume saved for RAG.");
+    };
+
+    document.getElementById("saveCompanies").onclick = async () => {
+      const rows = JSON.parse(document.getElementById("companies").value);
+      await api("/api/companies", { method: "PUT", body: JSON.stringify({ companies: rows }) });
+      showBanner("Companies saved.");
+    };
+
+    document.getElementById("filterMatch").onchange = renderJobs;
+    document.getElementById("filterRegion").onchange = renderJobs;
+
+    document.getElementById("runBtn").onclick = async () => {
+      document.querySelector('.tabs button[data-tab="results"]').click();
+      const steps = document.getElementById("steps");
+      steps.innerHTML = "<div class='step active'>⟳ Scraping ~100 company boards (30–90s)…</div>";
+      document.getElementById("errorBox").classList.add("hidden");
+      document.getElementById("runBtn").disabled = true;
+      try {
+        await api("/api/resume", { method: "PUT", body: JSON.stringify({ resume: document.getElementById("resume").value }) });
+        try {
+          const rows = JSON.parse(document.getElementById("companies").value);
+          await api("/api/companies", { method: "PUT", body: JSON.stringify({ companies: rows }) });
+        } catch (_) {}
+        const titlesRaw = document.getElementById("jobTitles").value.trim();
+        const jobTitles = titlesRaw ? titlesRaw.split(/[\n,;]+/).map(s => s.trim()).filter(Boolean) : [];
+        const regions = document.getElementById("regions").value.split(/[\n,;]+/).map(s => s.trim().toLowerCase()).filter(Boolean);
+        try {
+          await api("/api/config", { method: "PUT", body: JSON.stringify({
+            jobTitles, regions,
+            requireSeniorPmRules: document.getElementById("requireSeniorPm").checked,
+            fetchDescriptions: false,
+          })});
+        } catch (configErr) {
+          console.warn("Config save skipped:", configErr.message);
+        }
+        const data = await api("/api/run", {
+          method: "POST",
+          body: JSON.stringify({
+            category: document.getElementById("category").value,
+            resume: document.getElementById("resume").value,
+            candidateName: document.getElementById("candidateName").value,
+            useLlm: document.getElementById("useLlm").checked,
+            jobTitles,
+            regions,
+            requireSeniorPmRules: document.getElementById("requireSeniorPm").checked,
+            fetchDescriptions: false,
+            fast: true,
+            workers: 20,
+          }),
+        });
+        allJobs = data.jobs || [];
+        const t = data.timing || {};
+        steps.innerHTML = "<div class='step done'>✓ Done — " + allJobs.length + " roles in " + (t.totalSeconds || "?") + "s (scrape " + (t.scrapeSeconds || "?") + "s)</div>";
+        document.getElementById("countBadge").textContent = "(" + allJobs.length + ")";
+        const strong = allJobs.filter(j => (j.matchScore || 0) >= 80).length;
+        const avg = allJobs.length ? Math.round(allJobs.reduce((s, j) => s + (j.matchScore || 0), 0) / allJobs.length) : 0;
+        document.getElementById("stats").classList.remove("hidden");
+        document.getElementById("stats").innerHTML = `
+          <div class="stat"><b>${allJobs.length}</b><span>Roles</span></div>
+          <div class="stat"><b>${strong}</b><span>Strong</span></div>
+          <div class="stat"><b>${avg}%</b><span>Avg score</span></div>`;
+        document.getElementById("filters").classList.remove("hidden");
+        renderJobs();
+      } catch (e) {
+        steps.innerHTML = "";
+        const box = document.getElementById("errorBox");
+        box.textContent = e.message;
+        box.classList.remove("hidden");
+      }
+      document.getElementById("runBtn").disabled = false;
+    };
+
+    init();
+  </script>
+</body>
+</html>
