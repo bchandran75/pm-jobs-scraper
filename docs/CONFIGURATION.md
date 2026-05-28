@@ -48,7 +48,9 @@ EMAIL_TO=recipient@yahoo.com
 
 ## `companies.json` schema
 
-Single JSON **array** at the project root. Shared by Python (`companies.py`) and Node (`run.mjs`). Currently **93** companies (~33 AI, ~60 tech).
+Single JSON **array** at the project root. Shared by Python (`companies.py`) and Node (`run.mjs`). Currently **100** companies (~40 AI, ~60 tech).
+
+**Priority AI (top of file):** OpenAI (Ashby), Anthropic (Greenhouse), Perplexity (Ashby), plus xAI, Cursor, Cognition, CoreWeave, Suno. **NVIDIA** and **Groq** are listed but `enabled: false` — their careers sites do not expose a public Greenhouse/Lever/Ashby API slug (NVIDIA uses Workday).
 
 ### Object fields
 
@@ -66,7 +68,7 @@ Single JSON **array** at the project root. Shared by Python (`companies.py`) and
 [
   {
     "name": "OpenAI",
-    "ats": "greenhouse",
+    "ats": "ashby",
     "board_id": "openai",
     "category": "ai"
   },
@@ -89,6 +91,35 @@ Single JSON **array** at the project root. Shared by Python (`companies.py`) and
 | Ashby | `https://jobs.ashbyhq.com/{board_id}` | board slug |
 
 If a board returns 404 or empty jobs, verify the slug on the live careers site and update the entry.
+
+---
+
+## `config/agent.json` (Job Agent)
+
+Used by `server.py`, the browser UI, and `search_criteria.py` when running with `--match` or `POST /api/run`.
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `candidateName` | string | — | Name in match summaries |
+| `jobTitles` | string[] | VP/Head/CPO phrases | Substrings matched against job **title** |
+| `regions` | string[] | `india`, `texas`, `california` | Allowed regions |
+| `requireSeniorPmRules` | boolean | `true` | Also apply `filters.py` senior PM regex |
+| `fetchDescriptions` | boolean | `false` | Greenhouse full HTML (slower) |
+| `useLlmMatch` | boolean \| null | `null` | Claude refine if `ANTHROPIC_API_KEY` set |
+| `apiBaseUrl` | string | `http://127.0.0.1:8765` | UI hint |
+
+Editable in the browser UI or via `PUT /api/config`. See [AGENT.md](AGENT.md).
+
+### Optional `.env` keys (agent)
+
+| Variable | Purpose |
+|----------|---------|
+| `ANTHROPIC_API_KEY` | Optional LLM scoring after RAG |
+| `CANDIDATE_NAME` | Override candidate name |
+| `AGENT_PORT` | API port (default `8765`) |
+| `AGENT_HOST` | Bind address (default `127.0.0.1`) |
+
+---
 
 ### Category filter
 
