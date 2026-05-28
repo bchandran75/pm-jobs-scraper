@@ -63,13 +63,20 @@ Both runtimes deduplicate by **job URL** before saving or printing.
 
 ```
 src/pm_jobs_scraper/
-├── companies.py      # Load companies.json → Company dataclass
-├── filters.py        # Title seniority + geo regex → JobMatch
-├── agent.py          # Orchestration, Rich UI, save JSON/CSV
+├── companies.py         # Load companies.json → Company dataclass
+├── filters.py           # Title seniority + geo regex → JobMatch
+├── search_criteria.py   # Configurable jobTitles + regions (agent.json)
+├── resume_rag.py        # TF-IDF chunk index over resume
+├── matcher.py           # RAG + heuristic (+ optional LLM) scoring
+├── agent.py             # Orchestration, Rich UI, save JSON/CSV
 └── scrapers/
     ├── greenhouse.py
     ├── lever.py
     └── ashby.py
+
+server.py                  # HTTP API + browser UI at :8765
+ui/index.html              # Browser front-end
+config/agent.json          # Job titles, regions, agent settings
 ```
 
 | Module | Responsibility |
@@ -112,7 +119,7 @@ All endpoints are **unauthenticated** public job-board APIs.
 | **Link** | `job.absolute_url` |
 | **404** | Empty list (board missing or slug wrong) |
 
-Python passes `content=false` query param; Node uses default response.
+Python uses `content=true` only when `fetchDescriptions` is enabled in `config/agent.json` (default `false` for speed). Node uses default response without full descriptions.
 
 ### Lever
 
