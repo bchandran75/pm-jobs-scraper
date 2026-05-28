@@ -1,95 +1,634 @@
 [
-  {"name": "OpenAI", "ats": "greenhouse", "board_id": "openai", "category": "ai"},
-  {"name": "Anthropic", "ats": "greenhouse", "board_id": "anthropic", "category": "ai"},
-  {"name": "Cohere", "ats": "greenhouse", "board_id": "cohere", "category": "ai"},
-  {"name": "Scale AI", "ats": "greenhouse", "board_id": "scaleai", "category": "ai"},
-  {"name": "Hugging Face", "ats": "greenhouse", "board_id": "huggingface", "category": "ai"},
-  {"name": "Perplexity", "ats": "greenhouse", "board_id": "perplexityai", "category": "ai"},
-  {"name": "Mistral AI", "ats": "ashby", "board_id": "mistral", "category": "ai"},
-  {"name": "Stability AI", "ats": "greenhouse", "board_id": "stabilityai", "category": "ai"},
-  {"name": "Runway", "ats": "greenhouse", "board_id": "runwayml", "category": "ai"},
-  {"name": "Character.AI", "ats": "greenhouse", "board_id": "character", "category": "ai"},
-  {"name": "Adept", "ats": "greenhouse", "board_id": "adept", "category": "ai"},
-  {"name": "Inflection AI", "ats": "greenhouse", "board_id": "inflectionai", "category": "ai"},
-  {"name": "Together AI", "ats": "greenhouse", "board_id": "togetherai", "category": "ai"},
-  {"name": "Weights & Biases", "ats": "greenhouse", "board_id": "wandb", "category": "ai"},
-  {"name": "Databricks", "ats": "greenhouse", "board_id": "databricks", "category": "ai"},
-  {"name": "Snowflake", "ats": "greenhouse", "board_id": "snowflake", "category": "ai"},
-  {"name": "NVIDIA", "ats": "greenhouse", "board_id": "nvidia", "category": "ai"},
-  {"name": "DeepMind", "ats": "greenhouse", "board_id": "deepmind", "category": "ai"},
-  {"name": "Cerebras", "ats": "greenhouse", "board_id": "cerebras", "category": "ai"},
-  {"name": "Groq", "ats": "ashby", "board_id": "groq", "category": "ai"},
-  {"name": "Replicate", "ats": "ashby", "board_id": "replicate", "category": "ai"},
-  {"name": "ElevenLabs", "ats": "ashby", "board_id": "elevenlabs", "category": "ai"},
-  {"name": "Jasper", "ats": "greenhouse", "board_id": "jasper", "category": "ai"},
-  {"name": "Glean", "ats": "greenhouse", "board_id": "glean", "category": "ai"},
-  {"name": "Harvey", "ats": "ashby", "board_id": "harvey", "category": "ai"},
-  {"name": "Sierra", "ats": "ashby", "board_id": "sierra", "category": "ai"},
-  {"name": "Writer", "ats": "greenhouse", "board_id": "writer", "category": "ai"},
-  {"name": "Snorkel AI", "ats": "greenhouse", "board_id": "snorkel", "category": "ai"},
-  {"name": "Labelbox", "ats": "greenhouse", "board_id": "labelbox", "category": "ai"},
-  {"name": "Anyscale", "ats": "greenhouse", "board_id": "anyscale", "category": "ai"},
-  {"name": "Modular", "ats": "ashby", "board_id": "modular", "category": "ai"},
-  {"name": "SambaNova", "ats": "greenhouse", "board_id": "sambanova", "category": "ai"},
-  {"name": "Graphcore", "ats": "greenhouse", "board_id": "graphcore", "category": "ai"},
-  {"name": "Google", "ats": "greenhouse", "board_id": "google", "category": "tech"},
-  {"name": "Meta", "ats": "greenhouse", "board_id": "meta", "category": "tech"},
-  {"name": "Apple", "ats": "greenhouse", "board_id": "apple", "category": "tech"},
-  {"name": "Microsoft", "ats": "greenhouse", "board_id": "microsoft", "category": "tech"},
-  {"name": "Amazon", "ats": "greenhouse", "board_id": "amazon", "category": "tech"},
-  {"name": "Netflix", "ats": "lever", "board_id": "netflix", "category": "tech"},
-  {"name": "Stripe", "ats": "greenhouse", "board_id": "stripe", "category": "tech"},
-  {"name": "Uber", "ats": "greenhouse", "board_id": "uber", "category": "tech"},
-  {"name": "Airbnb", "ats": "greenhouse", "board_id": "airbnb", "category": "tech"},
-  {"name": "LinkedIn", "ats": "greenhouse", "board_id": "linkedin", "category": "tech"},
-  {"name": "Salesforce", "ats": "greenhouse", "board_id": "salesforce", "category": "tech"},
-  {"name": "Adobe", "ats": "greenhouse", "board_id": "adobe", "category": "tech"},
-  {"name": "Oracle", "ats": "greenhouse", "board_id": "oracle", "category": "tech"},
-  {"name": "IBM", "ats": "greenhouse", "board_id": "ibm", "category": "tech"},
-  {"name": "Intel", "ats": "greenhouse", "board_id": "intel", "category": "tech"},
-  {"name": "AMD", "ats": "greenhouse", "board_id": "amd", "category": "tech"},
-  {"name": "Qualcomm", "ats": "greenhouse", "board_id": "qualcomm", "category": "tech"},
-  {"name": "Cisco", "ats": "greenhouse", "board_id": "cisco", "category": "tech"},
-  {"name": "VMware", "ats": "greenhouse", "board_id": "vmware", "category": "tech"},
-  {"name": "ServiceNow", "ats": "greenhouse", "board_id": "servicenow", "category": "tech"},
-  {"name": "Workday", "ats": "greenhouse", "board_id": "workday", "category": "tech"},
-  {"name": "Intuit", "ats": "greenhouse", "board_id": "intuit", "category": "tech"},
-  {"name": "PayPal", "ats": "greenhouse", "board_id": "paypal", "category": "tech"},
-  {"name": "Block", "ats": "greenhouse", "board_id": "block", "category": "tech"},
-  {"name": "Shopify", "ats": "lever", "board_id": "shopify", "category": "tech"},
-  {"name": "Spotify", "ats": "lever", "board_id": "spotify", "category": "tech"},
-  {"name": "Snap", "ats": "greenhouse", "board_id": "snap", "category": "tech"},
-  {"name": "Pinterest", "ats": "greenhouse", "board_id": "pinterest", "category": "tech"},
-  {"name": "Reddit", "ats": "greenhouse", "board_id": "reddit", "category": "tech"},
-  {"name": "Discord", "ats": "greenhouse", "board_id": "discord", "category": "tech"},
-  {"name": "Twilio", "ats": "greenhouse", "board_id": "twilio", "category": "tech"},
-  {"name": "Atlassian", "ats": "greenhouse", "board_id": "atlassian", "category": "tech"},
-  {"name": "Cloudflare", "ats": "greenhouse", "board_id": "cloudflare", "category": "tech"},
-  {"name": "Datadog", "ats": "greenhouse", "board_id": "datadog", "category": "tech"},
-  {"name": "MongoDB", "ats": "greenhouse", "board_id": "mongodb", "category": "tech"},
-  {"name": "Confluent", "ats": "greenhouse", "board_id": "confluent", "category": "tech"},
-  {"name": "Palantir", "ats": "lever", "board_id": "palantir", "category": "tech"},
-  {"name": "DoorDash", "ats": "greenhouse", "board_id": "doordash", "category": "tech"},
-  {"name": "Lyft", "ats": "greenhouse", "board_id": "lyft", "category": "tech"},
-  {"name": "Coinbase", "ats": "greenhouse", "board_id": "coinbase", "category": "tech"},
-  {"name": "Robinhood", "ats": "greenhouse", "board_id": "robinhood", "category": "tech"},
-  {"name": "Zoom", "ats": "greenhouse", "board_id": "zoom", "category": "tech"},
-  {"name": "Slack", "ats": "greenhouse", "board_id": "slack", "category": "tech"},
-  {"name": "Notion", "ats": "ashby", "board_id": "notion", "category": "tech"},
-  {"name": "Figma", "ats": "greenhouse", "board_id": "figma", "category": "tech"},
-  {"name": "Canva", "ats": "greenhouse", "board_id": "canva", "category": "tech"},
-  {"name": "Asana", "ats": "greenhouse", "board_id": "asana", "category": "tech"},
-  {"name": "Dropbox", "ats": "greenhouse", "board_id": "dropbox", "category": "tech"},
-  {"name": "Box", "ats": "greenhouse", "board_id": "box", "category": "tech"},
-  {"name": "Splunk", "ats": "greenhouse", "board_id": "splunk", "category": "tech"},
-  {"name": "Okta", "ats": "greenhouse", "board_id": "okta", "category": "tech"},
-  {"name": "CrowdStrike", "ats": "greenhouse", "board_id": "crowdstrike", "category": "tech"},
-  {"name": "Zscaler", "ats": "greenhouse", "board_id": "zscaler", "category": "tech"},
-  {"name": "Palo Alto Networks", "ats": "greenhouse", "board_id": "paloaltonetworks", "category": "tech"},
-  {"name": "Autodesk", "ats": "greenhouse", "board_id": "autodesk", "category": "tech"},
-  {"name": "SAP", "ats": "greenhouse", "board_id": "sap", "category": "tech"},
-  {"name": "Tesla", "ats": "greenhouse", "board_id": "tesla", "category": "tech"},
-  {"name": "Rivian", "ats": "greenhouse", "board_id": "rivian", "category": "tech"},
-  {"name": "Waymo", "ats": "greenhouse", "board_id": "waymo", "category": "tech"},
-  {"name": "Cruise", "ats": "greenhouse", "board_id": "getcruise", "category": "tech"}
+  {
+    "name": "OpenAI",
+    "ats": "ashby",
+    "board_id": "openai",
+    "category": "ai"
+  },
+  {
+    "name": "Anthropic",
+    "ats": "greenhouse",
+    "board_id": "anthropic",
+    "category": "ai"
+  },
+  {
+    "name": "Perplexity",
+    "ats": "ashby",
+    "board_id": "perplexity",
+    "category": "ai"
+  },
+  {
+    "name": "NVIDIA",
+    "ats": "greenhouse",
+    "board_id": "nvidia",
+    "category": "ai",
+    "enabled": false
+  },
+  {
+    "name": "xAI",
+    "ats": "greenhouse",
+    "board_id": "xai",
+    "category": "ai"
+  },
+  {
+    "name": "Cursor",
+    "ats": "ashby",
+    "board_id": "cursor",
+    "category": "ai"
+  },
+  {
+    "name": "Cognition",
+    "ats": "greenhouse",
+    "board_id": "cognitionlabs",
+    "category": "ai"
+  },
+  {
+    "name": "CoreWeave",
+    "ats": "greenhouse",
+    "board_id": "coreweave",
+    "category": "ai"
+  },
+  {
+    "name": "Suno",
+    "ats": "ashby",
+    "board_id": "suno",
+    "category": "ai"
+  },
+  {
+    "name": "Poolside",
+    "ats": "ashby",
+    "board_id": "poolside",
+    "category": "ai"
+  },
+  {
+    "name": "Safe Superintelligence",
+    "ats": "ashby",
+    "board_id": "ssi",
+    "category": "ai"
+  },
+  {
+    "name": "Lambda",
+    "ats": "ashby",
+    "board_id": "lambda",
+    "category": "ai"
+  },
+  {
+    "name": "Helsing",
+    "ats": "greenhouse",
+    "board_id": "helsing",
+    "category": "ai"
+  },
+  {
+    "name": "Figure AI",
+    "ats": "greenhouse",
+    "board_id": "figureai",
+    "category": "ai"
+  },
+  {
+    "name": "Cohere",
+    "ats": "ashby",
+    "board_id": "cohere",
+    "category": "ai"
+  },
+  {
+    "name": "Scale AI",
+    "ats": "greenhouse",
+    "board_id": "scaleai",
+    "category": "ai"
+  },
+  {
+    "name": "Hugging Face",
+    "ats": "greenhouse",
+    "board_id": "huggingface",
+    "category": "ai"
+  },
+  {
+    "name": "Mistral AI",
+    "ats": "lever",
+    "board_id": "mistral",
+    "category": "ai"
+  },
+  {
+    "name": "Stability AI",
+    "ats": "greenhouse",
+    "board_id": "stabilityai",
+    "category": "ai"
+  },
+  {
+    "name": "Runway",
+    "ats": "ashby",
+    "board_id": "runway",
+    "category": "ai"
+  },
+  {
+    "name": "Character.AI",
+    "ats": "ashby",
+    "board_id": "character",
+    "category": "ai"
+  },
+  {
+    "name": "Adept",
+    "ats": "greenhouse",
+    "board_id": "adept",
+    "category": "ai"
+  },
+  {
+    "name": "Inflection AI",
+    "ats": "greenhouse",
+    "board_id": "inflectionai",
+    "category": "ai"
+  },
+  {
+    "name": "Together AI",
+    "ats": "greenhouse",
+    "board_id": "togetherai",
+    "category": "ai"
+  },
+  {
+    "name": "Weights & Biases",
+    "ats": "greenhouse",
+    "board_id": "wandb",
+    "category": "ai"
+  },
+  {
+    "name": "Databricks",
+    "ats": "greenhouse",
+    "board_id": "databricks",
+    "category": "ai"
+  },
+  {
+    "name": "Snowflake",
+    "ats": "ashby",
+    "board_id": "snowflake",
+    "category": "ai"
+  },
+  {
+    "name": "DeepMind",
+    "ats": "greenhouse",
+    "board_id": "deepmind",
+    "category": "ai"
+  },
+  {
+    "name": "Cerebras",
+    "ats": "greenhouse",
+    "board_id": "cerebras",
+    "category": "ai"
+  },
+  {
+    "name": "Groq",
+    "ats": "ashby",
+    "board_id": "groq",
+    "category": "ai",
+    "enabled": false
+  },
+  {
+    "name": "Replicate",
+    "ats": "ashby",
+    "board_id": "replicate",
+    "category": "ai"
+  },
+  {
+    "name": "ElevenLabs",
+    "ats": "ashby",
+    "board_id": "elevenlabs",
+    "category": "ai"
+  },
+  {
+    "name": "Jasper",
+    "ats": "greenhouse",
+    "board_id": "jasper",
+    "category": "ai"
+  },
+  {
+    "name": "Glean",
+    "ats": "greenhouse",
+    "board_id": "glean",
+    "category": "ai"
+  },
+  {
+    "name": "Harvey",
+    "ats": "ashby",
+    "board_id": "harvey",
+    "category": "ai"
+  },
+  {
+    "name": "Sierra",
+    "ats": "ashby",
+    "board_id": "sierra",
+    "category": "ai"
+  },
+  {
+    "name": "Writer",
+    "ats": "greenhouse",
+    "board_id": "writer",
+    "category": "ai"
+  },
+  {
+    "name": "Snorkel AI",
+    "ats": "greenhouse",
+    "board_id": "snorkel",
+    "category": "ai"
+  },
+  {
+    "name": "Labelbox",
+    "ats": "greenhouse",
+    "board_id": "labelbox",
+    "category": "ai"
+  },
+  {
+    "name": "Anyscale",
+    "ats": "greenhouse",
+    "board_id": "anyscale",
+    "category": "ai"
+  },
+  {
+    "name": "Modular",
+    "ats": "ashby",
+    "board_id": "modular",
+    "category": "ai"
+  },
+  {
+    "name": "SambaNova",
+    "ats": "greenhouse",
+    "board_id": "sambanova",
+    "category": "ai"
+  },
+  {
+    "name": "Graphcore",
+    "ats": "greenhouse",
+    "board_id": "graphcore",
+    "category": "ai"
+  },
+  {
+    "name": "PhonePe",
+    "ats": "greenhouse",
+    "board_id": "phonepe",
+    "category": "tech"
+  },
+  {
+    "name": "Groww",
+    "ats": "greenhouse",
+    "board_id": "groww",
+    "category": "tech"
+  },
+  {
+    "name": "Google",
+    "ats": "greenhouse",
+    "board_id": "google",
+    "category": "tech"
+  },
+  {
+    "name": "Meta",
+    "ats": "greenhouse",
+    "board_id": "meta",
+    "category": "tech"
+  },
+  {
+    "name": "Apple",
+    "ats": "greenhouse",
+    "board_id": "apple",
+    "category": "tech"
+  },
+  {
+    "name": "Microsoft",
+    "ats": "greenhouse",
+    "board_id": "microsoft",
+    "category": "tech"
+  },
+  {
+    "name": "Amazon",
+    "ats": "greenhouse",
+    "board_id": "amazon",
+    "category": "tech"
+  },
+  {
+    "name": "Netflix",
+    "ats": "lever",
+    "board_id": "netflix",
+    "category": "tech"
+  },
+  {
+    "name": "Stripe",
+    "ats": "greenhouse",
+    "board_id": "stripe",
+    "category": "tech"
+  },
+  {
+    "name": "Uber",
+    "ats": "greenhouse",
+    "board_id": "uber",
+    "category": "tech"
+  },
+  {
+    "name": "Airbnb",
+    "ats": "greenhouse",
+    "board_id": "airbnb",
+    "category": "tech"
+  },
+  {
+    "name": "LinkedIn",
+    "ats": "greenhouse",
+    "board_id": "linkedin",
+    "category": "tech"
+  },
+  {
+    "name": "Salesforce",
+    "ats": "greenhouse",
+    "board_id": "salesforce",
+    "category": "tech"
+  },
+  {
+    "name": "Adobe",
+    "ats": "greenhouse",
+    "board_id": "adobe",
+    "category": "tech"
+  },
+  {
+    "name": "Oracle",
+    "ats": "greenhouse",
+    "board_id": "oracle",
+    "category": "tech"
+  },
+  {
+    "name": "IBM",
+    "ats": "greenhouse",
+    "board_id": "ibm",
+    "category": "tech"
+  },
+  {
+    "name": "Intel",
+    "ats": "greenhouse",
+    "board_id": "intel",
+    "category": "tech"
+  },
+  {
+    "name": "AMD",
+    "ats": "greenhouse",
+    "board_id": "amd",
+    "category": "tech"
+  },
+  {
+    "name": "Qualcomm",
+    "ats": "greenhouse",
+    "board_id": "qualcomm",
+    "category": "tech"
+  },
+  {
+    "name": "Cisco",
+    "ats": "greenhouse",
+    "board_id": "cisco",
+    "category": "tech"
+  },
+  {
+    "name": "VMware",
+    "ats": "greenhouse",
+    "board_id": "vmware",
+    "category": "tech"
+  },
+  {
+    "name": "ServiceNow",
+    "ats": "greenhouse",
+    "board_id": "servicenow",
+    "category": "tech"
+  },
+  {
+    "name": "Workday",
+    "ats": "greenhouse",
+    "board_id": "workday",
+    "category": "tech"
+  },
+  {
+    "name": "Intuit",
+    "ats": "greenhouse",
+    "board_id": "intuit",
+    "category": "tech"
+  },
+  {
+    "name": "PayPal",
+    "ats": "greenhouse",
+    "board_id": "paypal",
+    "category": "tech"
+  },
+  {
+    "name": "Block",
+    "ats": "greenhouse",
+    "board_id": "block",
+    "category": "tech"
+  },
+  {
+    "name": "Shopify",
+    "ats": "lever",
+    "board_id": "shopify",
+    "category": "tech"
+  },
+  {
+    "name": "Spotify",
+    "ats": "lever",
+    "board_id": "spotify",
+    "category": "tech"
+  },
+  {
+    "name": "Snap",
+    "ats": "greenhouse",
+    "board_id": "snap",
+    "category": "tech"
+  },
+  {
+    "name": "Pinterest",
+    "ats": "greenhouse",
+    "board_id": "pinterest",
+    "category": "tech"
+  },
+  {
+    "name": "Reddit",
+    "ats": "greenhouse",
+    "board_id": "reddit",
+    "category": "tech"
+  },
+  {
+    "name": "Discord",
+    "ats": "greenhouse",
+    "board_id": "discord",
+    "category": "tech"
+  },
+  {
+    "name": "Twilio",
+    "ats": "greenhouse",
+    "board_id": "twilio",
+    "category": "tech"
+  },
+  {
+    "name": "Atlassian",
+    "ats": "greenhouse",
+    "board_id": "atlassian",
+    "category": "tech"
+  },
+  {
+    "name": "Cloudflare",
+    "ats": "greenhouse",
+    "board_id": "cloudflare",
+    "category": "tech"
+  },
+  {
+    "name": "Datadog",
+    "ats": "greenhouse",
+    "board_id": "datadog",
+    "category": "tech"
+  },
+  {
+    "name": "MongoDB",
+    "ats": "greenhouse",
+    "board_id": "mongodb",
+    "category": "tech"
+  },
+  {
+    "name": "Confluent",
+    "ats": "greenhouse",
+    "board_id": "confluent",
+    "category": "tech"
+  },
+  {
+    "name": "Palantir",
+    "ats": "lever",
+    "board_id": "palantir",
+    "category": "tech"
+  },
+  {
+    "name": "DoorDash",
+    "ats": "greenhouse",
+    "board_id": "doordash",
+    "category": "tech"
+  },
+  {
+    "name": "Lyft",
+    "ats": "greenhouse",
+    "board_id": "lyft",
+    "category": "tech"
+  },
+  {
+    "name": "Coinbase",
+    "ats": "greenhouse",
+    "board_id": "coinbase",
+    "category": "tech"
+  },
+  {
+    "name": "Robinhood",
+    "ats": "greenhouse",
+    "board_id": "robinhood",
+    "category": "tech"
+  },
+  {
+    "name": "Zoom",
+    "ats": "greenhouse",
+    "board_id": "zoom",
+    "category": "tech"
+  },
+  {
+    "name": "Slack",
+    "ats": "greenhouse",
+    "board_id": "slack",
+    "category": "tech"
+  },
+  {
+    "name": "Notion",
+    "ats": "ashby",
+    "board_id": "notion",
+    "category": "tech"
+  },
+  {
+    "name": "Figma",
+    "ats": "greenhouse",
+    "board_id": "figma",
+    "category": "tech"
+  },
+  {
+    "name": "Canva",
+    "ats": "greenhouse",
+    "board_id": "canva",
+    "category": "tech"
+  },
+  {
+    "name": "Asana",
+    "ats": "greenhouse",
+    "board_id": "asana",
+    "category": "tech"
+  },
+  {
+    "name": "Dropbox",
+    "ats": "greenhouse",
+    "board_id": "dropbox",
+    "category": "tech"
+  },
+  {
+    "name": "Box",
+    "ats": "greenhouse",
+    "board_id": "box",
+    "category": "tech"
+  },
+  {
+    "name": "Splunk",
+    "ats": "greenhouse",
+    "board_id": "splunk",
+    "category": "tech"
+  },
+  {
+    "name": "Okta",
+    "ats": "greenhouse",
+    "board_id": "okta",
+    "category": "tech"
+  },
+  {
+    "name": "CrowdStrike",
+    "ats": "greenhouse",
+    "board_id": "crowdstrike",
+    "category": "tech"
+  },
+  {
+    "name": "Zscaler",
+    "ats": "greenhouse",
+    "board_id": "zscaler",
+    "category": "tech"
+  },
+  {
+    "name": "Palo Alto Networks",
+    "ats": "greenhouse",
+    "board_id": "paloaltonetworks",
+    "category": "tech"
+  },
+  {
+    "name": "Autodesk",
+    "ats": "greenhouse",
+    "board_id": "autodesk",
+    "category": "tech"
+  },
+  {
+    "name": "SAP",
+    "ats": "greenhouse",
+    "board_id": "sap",
+    "category": "tech"
+  },
+  {
+    "name": "Tesla",
+    "ats": "greenhouse",
+    "board_id": "tesla",
+    "category": "tech"
+  },
+  {
+    "name": "Rivian",
+    "ats": "greenhouse",
+    "board_id": "rivian",
+    "category": "tech"
+  },
+  {
+    "name": "Waymo",
+    "ats": "greenhouse",
+    "board_id": "waymo",
+    "category": "tech"
+  },
+  {
+    "name": "Cruise",
+    "ats": "greenhouse",
+    "board_id": "getcruise",
+    "category": "tech"
+  }
 ]
