@@ -15,8 +15,9 @@ from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.table import Table
 
-from pm_jobs_scraper.companies import COMPANIES, Company
+from pm_jobs_scraper.companies import COMPANIES, Company, load_companies
 from pm_jobs_scraper.filters import JobMatch
+from pm_jobs_scraper.matcher import ScoredJob, match_jobs
 from pm_jobs_scraper.scrapers import fetch_ashby_jobs, fetch_greenhouse_jobs, fetch_lever_jobs
 
 console = Console()
@@ -59,10 +60,12 @@ def _fetch_company(
 def run_scrape(
     *,
     categories: set[str] | None = None,
+    companies: list[Company] | None = None,
     max_workers: int = 12,
-    request_delay_s: float = 0.05,
+    request_delay_s: float = 0.0,
 ) -> ScrapeResult:
-    targets = [c for c in COMPANIES if not categories or c.category in categories]
+    board_list = companies if companies is not None else COMPANIES
+    targets = [c for c in board_list if not categories or c.category in categories]
     all_matches: list[JobMatch] = []
     stats = ScrapeStats(companies_checked=len(targets))
 
@@ -131,7 +134,21 @@ def print_results(matches: list[JobMatch], stats: ScrapeStats | None = None) -> 
     console.print(f"\n[green]{len(matches)}[/green] matching role(s).")
 
 
-def save_results(matches: list[JobMatch], output_dir: Path) -> tuple[Path, Path]:
+def run_match(
+    jobs: list[JobMatch],
+    resume_text: str,
+    *,
+    use_llm: bool | None = None,
+) -> list[ScoredJob]:
+    return match_jobs(jobs, resume_text, use_llm=use_llm)
+
+
+def save_results(
+    matches: list[JobMatch] | list[ScoredJob],
+    output_dir: Path,
+    *,
+    resume_rag: bool = False,
+) -> tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     json_path = output_dir / f"pm_jobs_{ts}.json"
@@ -140,6 +157,7 @@ def save_results(matches: list[JobMatch], output_dir: Path) -> tuple[Path, Path]
     payload = {
         "scraped_at": datetime.now(timezone.utc).isoformat(),
         "count": len(matches),
+        "resume_rag": resume_rag,
         "filters": {
             "role": "product_management_above_director",
             "regions": ["india", "texas", "california"],
@@ -149,12 +167,16 @@ def save_results(matches: list[JobMatch], output_dir: Path) -> tuple[Path, Path]
     json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     with csv_path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=["company", "category", "title", "location", "region", "url", "ats"],
-        )
+        base_fields = ["company", "category", "title", "location", "region", "url", "ats", "description"]
+        score_fields = ["matchScore", "matchTier", "summary", "strengths", "gaps"]
+        fieldnames = base_fields + (score_fields if resume_rag else [])
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
         for m in matches:
-            writer.writerow(asdict(m))
+            row = asdict(m)
+            for key in ("strengths", "gaps", "resumeEvidence"):
+                if key in row and isinstance(row[key], list):
+                    row[key] = " | ".join(row[key])
+            writer.writerow(row)
 
     return json_path, csv_path
