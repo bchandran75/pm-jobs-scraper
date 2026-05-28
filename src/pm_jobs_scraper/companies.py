@@ -38,4 +38,11 @@ def load_companies(path: Path | None = None) -> list[Company]:
     return companies
 
 
+def reload_companies(path: Path | None = None) -> list[Company]:
+    """Reload companies from disk (used after config edits)."""
+    global COMPANIES
+    COMPANIES = load_companies(path)
+    return COMPANIES
+
+
 COMPANIES: list[Company] = load_companies()
