@@ -6,6 +6,7 @@ import httpx
 
 from pm_jobs_scraper.companies import Company
 from pm_jobs_scraper.filters import JobMatch, is_match
+from pm_jobs_scraper.scrape_utils import strip_html
 
 ASHBY_URL = "https://api.ashbyhq.com/posting-api/job-board/{board_id}"
 
@@ -27,7 +28,19 @@ def fetch_ashby_jobs(client: httpx.Client, company: Company) -> list[JobMatch]:
         if not location and job.get("isRemote"):
             location = "Remote"
         job_url = job.get("jobUrl") or job.get("applyUrl") or ""
+        desc = strip_html(job.get("descriptionHtml") or job.get("description") or "")
         m = is_match(company.name, company.category, title, location, job_url, "ashby")
         if m:
-            matches.append(m)
+            matches.append(
+                JobMatch(
+                    company=m.company,
+                    category=m.category,
+                    title=m.title,
+                    location=m.location,
+                    url=m.url,
+                    region=m.region,
+                    ats=m.ats,
+                    description=desc,
+                )
+            )
     return matches
