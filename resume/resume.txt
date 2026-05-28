@@ -1,0 +1,15 @@
+Balaji Chandran | VP / Head of Product | Bangalore, India
+
+20+ years building AI/ML-powered products in e-commerce and ad-tech with billion-dollar business impact.
+
+Head of Product – CRM & Digital Merchant, Walmart Global Tech India (2020–present): Predictive pricing, demand forecasting & inventory platform → $B+ margin impact. Enterprise CRM on Walmart data lake → 250M+ customer segmentation, NBA, Personalization → multi-$B GMV. Full-format GenAI content platform (text/image/video) → weeks to minutes. Fulfillment center space optimization.
+
+CPO, HomeLane (2019–2020): +23% conversions via ML lead-scoring; −35% CAC; automated design-to-manufacturing.
+Head of Product – User Engagement & Order Mgmt, Flipkart (2016–2019): +50% time-on-platform; +200bps gross order conversion; +600bps net order conversion.
+GPM – Ad-Tech & Monetisation, eBay USA (2013–2015): Built 0→1 PLA business → $33M revenue; +14% ad checkout efficiency.
+Sr PM – 3P Seller Growth, Amazon USA (2012–2013): +162% YoY 3P seller GMV.
+Sr PM – Content Platform, Yahoo! USA (2008–2012): Global CMS for 135 apps, 20+ countries.
+PM & Software Engineer, Gateway & EDS (1997–2008): 9 yrs enterprise engineering.
+
+Skills: AI/ML product strategy, GenAI platforms, CRM at scale, e-commerce, ad-tech, marketplace, inventory, pricing, omnichannel, forecasting.
+Education: B.E. University of Madras; UC Berkeley certification.
